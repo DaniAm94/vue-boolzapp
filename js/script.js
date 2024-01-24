@@ -189,8 +189,21 @@ const app = createApp({
                     }
                 ],
             }
-        ]
-    })
+        ],
+        selectedContactId: 1
+    }),
+    computed: {
+        selectedContact() {
+            return this.contacts.find((contact) => this.selectedContactId === contact.id)
+        }
+
+    },
+    methods: {
+        selectContactId(id) {
+            this.selectedContactId = id;
+            console.log(this.selectedContactId);
+        }
+    }
 });
 
 app.mount('#root');

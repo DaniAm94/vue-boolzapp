@@ -58,7 +58,8 @@
                     </div>
                     <!-- Lista contatti -->
                     <ul class="list-group flex-grow-1 overflow-y-scroll contacts-list">
-                        <li v-for="contact in contacts" class="list-group-item d-flex justify-content-between ">
+                        <li @click="selectContactId(contact.id)" v-for="contact in contacts"
+                            class="list-group-item d-flex justify-content-between ">
                             <div class="contact-li-left d-flex ">
                                 <img :src="`img/avatar${contact.avatar}.jpg`" class="avatar" :alt="contact.avatar">
                                 <div>
@@ -75,9 +76,9 @@
                     <!-- Header destro -->
                     <header class="d-flex justify-content-between ">
                         <div class="personal-data d-flex align-items-center ">
-                            <img class="avatar" src="img/avatar_2.jpg" alt="avatar 2">
+                            <img class="avatar" :src="`img/avatar${selectedContact.avatar}.jpg`" alt="avatar 2">
                             <div>
-                                <div id="selected-contact-name">Michele</div>
+                                <div id="selected-contact-name">nome</div>
                                 <span id="last-access"> Ultimo accesso oggi alle 12:00</span>
                             </div>
                         </div>
@@ -89,16 +90,13 @@
                     </header>
                     <!-- Display messaggi -->
                     <div id="display-messages" class="flex-grow-1 overflow-y-scroll">
-                        <div class="message-item sent">Hai portato a spasso il cane?
-                            <span class="message-time">15:30</span>
-                        </div>
-                        <div class="message-item sent">Ricordati di stendere i panni
-                            <span class="message-time">15:50</span>
-                        </div>
-                        <div class="message-item received">Tutto fatto!
-                            <span class="message-time">16:15</span>
+                        <div v-for="message in selectedContact.messages" class="message-item"
+                            :class="message.status=== 'sent'? 'sent': 'received'">
+                            {{message.text}}
+                            <span class="message-time"></span>
                         </div>
                     </div>
+                    <!-- Footer -->
                     <footer class="d-flex px-5">
                         <button class="btn" type="button" id="emoji">
                             <i class="fa-regular fa-face-smile"></i>
