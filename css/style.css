@@ -27,20 +27,21 @@ img {
 }
 
 .row>* {
-    min-height: 600px;
+    height: 90vh;
     background-color: #eaeaea;
 }
 
 header,
 footer {
-    min-height: 70px;
     display: flex;
-    padding: 0 10px;
+    padding: 10px 20px;
 }
 
 /* Left Block */
 
-#user-name {
+#user-name,
+.contact-name,
+#selected-contact-name {
     font-size: 1.2rem;
     font-weight: bold;
 }
@@ -48,11 +49,12 @@ footer {
 .notifics-bar,
 .search-bar {
     padding: 10px;
-    min-height: 30px;
+    flex-shrink: 0;
 }
 
+
 #search-bar {
-    height: 30px;
+    min-height: 40px;
     width: 100%;
     border: none;
     padding-left: calc(1.5em + .75rem);
@@ -85,11 +87,77 @@ footer {
 }
 
 .last-message,
-.last-message-time {
+.last-message-time,
+.message-time {
     color: grey;
 }
 
 .contacts-list>li:hover {
     background-color: lightgray;
     cursor: pointer;
+}
+
+/* Right block */
+#display-messages {
+    background-image: url("/img/mine.jpg");
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 30px 50px;
+}
+
+.message-item {
+    position: relative;
+    border-radius: 10px;
+    min-height: 20px;
+    width: calc(100% / 12 * 5);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.message-item.sent {
+    align-self: flex-end;
+    background-color: #ddf7bd;
+
+}
+
+.message-item.sent::after {
+    content: '';
+    border-top: 20px solid transparent;
+    border-left: 0;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #ddf7bd;
+    position: absolute;
+    right: -10px;
+    bottom: 0;
+}
+
+.message-item.received {
+    align-self: flex-start;
+    background-color: white;
+}
+
+.message-item.received::after {
+    content: '';
+    border-top: 20px solid transparent;
+    border-left: 20px solid transparent;
+    border-right: 0;
+    border-bottom: 20px solid white;
+    position: absolute;
+    left: -10px;
+    bottom: 0;
+}
+
+.message-time {
+    font-size: 0.8rem;
+    align-self: flex-end;
+}
+
+footer i {
+    font-size: 1.3rem;
+}
+
+#new-message {
+    padding: 10px;
 }

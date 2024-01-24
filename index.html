@@ -30,11 +30,13 @@
         <main class="container">
 
             <div class="row">
-                <div class="block-left col-4 d-flex flex-column border-end border-dark  ">
+                <!-- Blocco sinistro -->
+                <div class="block-left col-4 d-flex flex-column border-end border-dark-subtle">
+                    <!-- Header -->
                     <header class="d-flex justify-content-between ">
                         <div class="personal-data d-flex align-items-center ">
                             <img class="avatar" src="img/avatar_io.jpg" alt="avatar 1">
-                            <span id="user-name">Sofia</span>
+                            <div id="user-name">Sofia</div>
                         </div>
                         <div class="buttons d-flex align-items-center column-gap-3">
                             <i role="button" class="fa-solid fa-circle-notch"></i>
@@ -42,6 +44,7 @@
                             <i role="button" class="fa-solid fa-ellipsis-vertical"></i>
                         </div>
                     </header>
+                    <!-- Barra notifiche -->
                     <div class="notifics-bar d-flex align-items-center  ">
                         <i class="fa-solid fa-bell-slash"></i>
                         <i class="fa-solid fa-bell d-none "></i>
@@ -49,9 +52,11 @@
                             <span role="button" class="notific-toggle d-block ">Attiva notifiche desktop</span>
                         </span>
                     </div>
+                    <!-- Barra di ricerca contatti -->
                     <div class="search-bar">
                         <input type="text" id="search-bar" placeholder="Cerca o inizia una nuova chat">
                     </div>
+                    <!-- Lista contatti -->
                     <ul class="list-group flex-grow-1 overflow-y-scroll contacts-list">
                         <li class="list-group-item d-flex justify-content-between ">
                             <div class="contact-li-left d-flex ">
@@ -136,10 +141,45 @@
 
                     </ul>
                 </div>
+                <!-- Blocco destro -->
                 <div class="block-right col-8 d-flex flex-column">
-                    <header class="bg-info ">Selected contact data</header>
-                    <div class="display-message bg-warning  flex-grow-1 overflow-y-scroll">messages</div>
-                    <footer class="bg-danger ">write new message</footer>
+                    <!-- Header destro -->
+                    <header class="d-flex justify-content-between ">
+                        <div class="personal-data d-flex align-items-center ">
+                            <img class="avatar" src="img/avatar_2.jpg" alt="avatar 2">
+                            <div>
+                                <div id="selected-contact-name">Michele</div>
+                                <span id="last-access"> Ultimo accesso oggi alle 12:00</span>
+                            </div>
+                        </div>
+                        <div class="buttons d-flex align-items-center column-gap-3">
+                            <i role="button" class="fa-solid fa-circle-notch"></i>
+                            <i role="button" class="fa-solid fa-message"></i>
+                            <i role="button" class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </header>
+                    <!-- Display messaggi -->
+                    <div id="display-messages" class="flex-grow-1 overflow-y-scroll">
+                        <div class="message-item sent">Hai portato a spasso il cane?
+                            <span class="message-time">15:30</span>
+                        </div>
+                        <div class="message-item sent">Ricordati di stendere i panni
+                            <span class="message-time">15:50</span>
+                        </div>
+                        <div class="message-item received">Tutto fatto!
+                            <span class="message-time">16:15</span>
+                        </div>
+                    </div>
+                    <footer class="d-flex px-5">
+                        <button class="btn" type="button" id="emoji">
+                            <i class="fa-regular fa-face-smile"></i>
+                        </button>
+                        <input id="new-message" type="text" class="flex-grow-1 border-0 rounded "
+                            placeholder="Scrivi un messaggio">
+                        <button class="btn" type="button" id="emoji">
+                            <i class="fa-solid fa-microphone"></i>
+                        </button>
+                    </footer>
                 </div>
             </div>
         </main>
