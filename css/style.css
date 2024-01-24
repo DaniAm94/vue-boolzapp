@@ -3,7 +3,23 @@
     background-image: linear-gradient(#499388 10%, #dbdbd2 10%);
 }
 
+
+/* Reset bootstrap row's gutter */
+.row {
+    --bs-gutter-x: 0;
+}
+
 .row>* {
     height: 600px;
     background-color: #eaeaea;
+}
+
+header,
+footer {
+    height: 70px;
+}
+
+.notifics-bar,
+.search-bar {
+    height: 50px;
 }
