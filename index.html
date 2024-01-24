@@ -29,20 +29,114 @@
     <div id="root" class="d-flex  align-items-center ">
         <main class="container">
 
-            <div class="border border-danger row">
-                <div class="block-left col-4 d-flex flex-column border border-black">
-                    <header class="bg-info">Personal data</header>
-                    <div class="notifics-bar bg-success "> notifics bar</div>
-                    <div class="search-bar bg-secondary ">search bar</div>
-                    <ul class="list-group flex-grow-1 overflow-y-scroll   ">
-                        <li class="list-group-item">contact</li>
-                        <li class="list-group-item">contact</li>
-                        <li class="list-group-item">contact</li>
-                        <li class="list-group-item">contact</li>
-                        <li class="list-group-item">contact</li>
+            <div class="row">
+                <div class="block-left col-4 d-flex flex-column border-end border-dark  ">
+                    <header class="d-flex justify-content-between ">
+                        <div class="personal-data d-flex align-items-center ">
+                            <img class="avatar" src="img/avatar_io.jpg" alt="avatar 1">
+                            <span id="user-name">Sofia</span>
+                        </div>
+                        <div class="buttons d-flex align-items-center column-gap-3">
+                            <i role="button" class="fa-solid fa-circle-notch"></i>
+                            <i role="button" class="fa-solid fa-message"></i>
+                            <i role="button" class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </header>
+                    <div class="notifics-bar d-flex align-items-center  ">
+                        <i class="fa-solid fa-bell-slash"></i>
+                        <i class="fa-solid fa-bell d-none "></i>
+                        <span>Ricevi notifiche di nuovi messaggi
+                            <span role="button" class="notific-toggle d-block ">Attiva notifiche desktop</span>
+                        </span>
+                    </div>
+                    <div class="search-bar">
+                        <input type="text" id="search-bar" placeholder="Cerca o inizia una nuova chat">
+                    </div>
+                    <ul class="list-group flex-grow-1 overflow-y-scroll contacts-list">
+                        <li class="list-group-item d-flex justify-content-between ">
+                            <div class="contact-li-left d-flex ">
+                                <img src="img/avatar_2.jpg" class="avatar" alt="avatar 2">
+                                <div>
+                                    <div class="contact-name">Michele</div>
+                                    <span class="last-message">Ultimo messaggio inviato</span>
+                                </div>
+                            </div>
+                            <span class="last-message-time">12:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between ">
+                            <div class="contact-li-left d-flex ">
+                                <img src="img/avatar_3.jpg" class="avatar" alt="avatar 2">
+                                <div>
+                                    <div class="contact-name">Fabio</div>
+                                    <span class="last-message">Ultimo messaggio inviato</span>
+                                </div>
+                            </div>
+                            <span class="last-message-time">12:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between ">
+                            <div class="contact-li-left d-flex ">
+                                <img src="img/avatar_4.jpg" class="avatar" alt="avatar 2">
+                                <div>
+                                    <div class="contact-name">Samuele</div>
+                                    <span class="last-message">Ultimo messaggio inviato</span>
+                                </div>
+                            </div>
+                            <span class="last-message-time">12:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between ">
+                            <div class="contact-li-left d-flex ">
+                                <img src="img/avatar_5.jpg" class="avatar" alt="avatar 2">
+                                <div>
+                                    <div class="contact-name">Alessandro B.</div>
+                                    <span class="last-message">Ultimo messaggio inviato</span>
+                                </div>
+                            </div>
+                            <span class="last-message-time">12:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between ">
+                            <div class="contact-li-left d-flex ">
+                                <img src="img/avatar_1.jpg" class="avatar" alt="avatar 2">
+                                <div>
+                                    <div class="contact-name">Alessandro L.</div>
+                                    <span class="last-message">Ultimo messaggio inviato</span>
+                                </div>
+                            </div>
+                            <span class="last-message-time">12:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between ">
+                            <div class="contact-li-left d-flex ">
+                                <img src="img/avatar_6.jpg" class="avatar" alt="avatar 2">
+                                <div>
+                                    <div class="contact-name">Claudia</div>
+                                    <span class="last-message">Ultimo messaggio inviato</span>
+                                </div>
+                            </div>
+                            <span class="last-message-time">12:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between ">
+                            <div class="contact-li-left d-flex ">
+                                <img src="img/avatar_7.jpg" class="avatar" alt="avatar 2">
+                                <div>
+                                    <div class="contact-name">Federico</div>
+                                    <span class="last-message">Ultimo messaggio inviato</span>
+                                </div>
+                            </div>
+                            <span class="last-message-time">12:00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between ">
+                            <div class="contact-li-left d-flex ">
+                                <img src="img/avatar_8.jpg" class="avatar" alt="avatar 2">
+                                <div>
+                                    <div class="contact-name">Davide</div>
+                                    <span class="last-message">Ultimo messaggio inviato</span>
+                                </div>
+                            </div>
+                            <span class="last-message-time">12:00</span>
+                        </li>
+
                     </ul>
                 </div>
-                <div class="block-right col-8 d-flex flex-column border border-black">
+                <div class="block-right col-8 d-flex flex-column">
                     <header class="bg-info ">Selected contact data</header>
                     <div class="display-message bg-warning  flex-grow-1 overflow-y-scroll">messages</div>
                     <footer class="bg-danger ">write new message</footer>
