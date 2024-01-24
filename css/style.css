@@ -1,0 +1,9 @@
+#root {
+    height: 100vh;
+    background-image: linear-gradient(#499388 10%, #dbdbd2 10%);
+}
+
+.row>* {
+    height: 600px;
+    background-color: #eaeaea;
+}
