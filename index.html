@@ -94,8 +94,9 @@
                     <!-- Display messaggi -->
                     <div id="display-messages" class="flex-grow-1 overflow-y-scroll">
                         <div v-for="message in selectedContact.messages" class="message-item dropdown-toggle"
-                            :class="message.status=== 'sent'? 'sent': 'received'" :key="message.id"
-                            data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="50,-50">
+                            :class="message.status=== 'sent'? 'sent': 'received'"
+                            :key="`${selectedContact.id} ${message.id}`" data-bs-toggle="dropdown" aria-expanded="false"
+                            data-bs-offset="50,-50">
                             {{message.text}}
                             <span class="message-time">{{message.date}}</span>
                             <ul class="dropdown-menu">
