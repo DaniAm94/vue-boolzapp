@@ -240,7 +240,7 @@ const app = createApp({
         },
         deleteMessage(messageId) {
             console.log(messageId)
-            this.selectedContact.messages = this.selectedContact.messages.filter((message) => !message.id === messageId)
+            this.selectedContact.messages = this.selectedContact.messages.filter((message) => message.id !== messageId)
         }
     }
 });
