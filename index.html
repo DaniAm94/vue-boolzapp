@@ -54,11 +54,12 @@
                     </div>
                     <!-- Barra di ricerca contatti -->
                     <div class="search-bar">
-                        <input type="text" id="search-bar" placeholder="Cerca o inizia una nuova chat">
+                        <input type="text" v-model="searchUser" id="search-bar"
+                            placeholder="Cerca o inizia una nuova chat">
                     </div>
                     <!-- Lista contatti -->
                     <ul class="list-group flex-grow-1 overflow-y-scroll contacts-list">
-                        <li @click="selectContactId(contact.id)" v-for="contact in contacts"
+                        <li @click="selectContactId(contact.id)" v-for="contact in filteredContacts"
                             class="list-group-item d-flex justify-content-between " :key="contact.id">
                             <div class="contact-li-left d-flex ">
                                 <img :src="`img/avatar${contact.avatar}.jpg`" class="avatar" :alt="contact.avatar">

@@ -191,11 +191,16 @@ const app = createApp({
             }
         ],
         selectedContactId: 1,
-        newMessageText: ''
+        newMessageText: '',
+        searchUser: ''
     }),
     computed: {
         selectedContact() {
             return this.contacts.find((contact) => this.selectedContactId === contact.id)
+        },
+        filteredContacts() {
+            const searchUserToLowerCase = this.searchUser.toLowerCase();
+            return this.contacts.filter(contact => contact.name.toLowerCase().includes(searchUserToLowerCase));
         }
 
     },
