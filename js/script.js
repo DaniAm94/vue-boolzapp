@@ -214,12 +214,24 @@ const app = createApp({
         getNewMessage() {
             const newMessage = {
                 id: new Date().toISOString(),
-                date: `${new Date().getHours()}:${new Date().getMinutes()}`,
+                date: `${new Date().getHours().toString().padStart(2, '0')}:${new Date().getMinutes().toString().padStart(2, '0')}`,
                 text: this.newMessageText,
                 status: 'sent'
             }
+            // Build an answer
+            const answer = {
+                id: new Date().toISOString(),
+                date: `${new Date().getHours().toString().padStart(2, '0')}:${new Date().getMinutes().toString().padStart(2, '0')}`,
+                text: 'Ok',
+                status: 'received'
+            }
             this.selectedContact.messages.push(newMessage);
             this.newMessageText = '';
+            // Auto answer after 1 second
+            setTimeout(() => {
+                this.selectedContact.messages.push(answer);
+
+            }, 1000)
         }
     }
 });
