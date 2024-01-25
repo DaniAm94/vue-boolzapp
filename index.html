@@ -17,10 +17,10 @@
     <!-- CSS Style sheet -->
     <link rel="stylesheet" href="css/style.css">
 
+
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
     <!-- Vue JS -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <!-- JS Data sheet -->
-    <script src="js/data.js"></script>
     <!-- JS Script -->
     <script src="js/script.js" defer></script>
 </head>
@@ -59,7 +59,7 @@
                     <!-- Lista contatti -->
                     <ul class="list-group flex-grow-1 overflow-y-scroll contacts-list">
                         <li @click="selectContactId(contact.id)" v-for="contact in contacts"
-                            class="list-group-item d-flex justify-content-between ">
+                            class="list-group-item d-flex justify-content-between " :key="contact.id">
                             <div class="contact-li-left d-flex ">
                                 <img :src="`img/avatar${contact.avatar}.jpg`" class="avatar" :alt="contact.avatar">
                                 <div>
@@ -74,11 +74,11 @@
                 <!-- Blocco destro -->
                 <div class="block-right col-8 d-flex flex-column">
                     <!-- Header destro -->
-                    <header class="d-flex justify-content-between ">
+                    <header class="d-flex justify-content-between flex-shrink-0 ">
                         <div class="personal-data d-flex align-items-center ">
                             <img class="avatar" :src="`img/avatar${selectedContact.avatar}.jpg`" alt="avatar 2">
                             <div>
-                                <div id="selected-contact-name">nome</div>
+                                <div id="selected-contact-name">{{selectedContact.name}}</div>
                                 <span id="last-access"> Ultimo accesso oggi alle 12:00</span>
                             </div>
                         </div>
@@ -91,18 +91,19 @@
                     <!-- Display messaggi -->
                     <div id="display-messages" class="flex-grow-1 overflow-y-scroll">
                         <div v-for="message in selectedContact.messages" class="message-item"
-                            :class="message.status=== 'sent'? 'sent': 'received'">
+                            :class="message.status=== 'sent'? 'sent': 'received'" :key="message.id">
                             {{message.text}}
-                            <span class="message-time"></span>
+                            <span class="message-time">{{message.date}}</span>
                         </div>
                     </div>
                     <!-- Footer -->
-                    <footer class="d-flex px-5">
-                        <button class="btn" type="button" id="emoji">
+                    <footer class="d-flex px-5 flex-shrink-0">
+                        <button @click="logNewList" class="btn" type="button" id="emoji">
                             <i class="fa-regular fa-face-smile"></i>
                         </button>
-                        <input id="new-message" type="text" class="flex-grow-1 border-0 rounded "
-                            placeholder="Scrivi un messaggio">
+                        <input @keyup.enter="getNewMessage" id="new-message" type="text"
+                            class="flex-grow-1 border-0 rounded " placeholder="Scrivi un messaggio"
+                            v-model="newMessageText">
                         <button class="btn" type="button" id="emoji">
                             <i class="fa-solid fa-microphone"></i>
                         </button>

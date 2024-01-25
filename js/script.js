@@ -190,7 +190,8 @@ const app = createApp({
                 ],
             }
         ],
-        selectedContactId: 1
+        selectedContactId: 1,
+        newMessageText: ''
     }),
     computed: {
         selectedContact() {
@@ -202,8 +203,27 @@ const app = createApp({
         selectContactId(id) {
             this.selectedContactId = id;
             console.log(this.selectedContactId);
+        },
+        logNewList() {
+            console.log(this.newContactsList);
+        },
+        fomatDate(date) {
+            const newDate = new Date(date);
+            return newDate.toISODate();
+        },
+        getNewMessage() {
+            const newMessage = {
+                id: new Date().toISOString(),
+                date: `${new Date().getHours()}:${new Date().getMinutes()}`,
+                text: this.newMessageText,
+                status: 'sent'
+            }
+            this.selectedContact.messages.push(newMessage);
+            this.newMessageText = '';
         }
     }
 });
 
 app.mount('#root');
+
+
