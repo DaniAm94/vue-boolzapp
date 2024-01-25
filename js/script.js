@@ -238,9 +238,9 @@ const app = createApp({
 
             }, 1000)
         },
-        deleteMessage(id) {
-            console.log(id)
-            //this.selectedContact.messages = this.selectedContact.messages.filter((message) => message.id === selectedMessage.id)
+        deleteMessage(messageId) {
+            console.log(messageId)
+            this.selectedContact.messages = this.selectedContact.messages.filter((message) => !message.id === messageId)
         }
     }
 });
