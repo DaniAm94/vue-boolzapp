@@ -96,12 +96,12 @@
                         <div v-for="message in selectedContact.messages" class="message-item dropdown-toggle"
                             :class="message.status=== 'sent'? 'sent': 'received'"
                             :key="`${selectedContact.id} ${message.id}`" data-bs-toggle="dropdown" aria-expanded="false"
-                            data-bs-offset="50,-50">
+                            data-bs-offset="50,-50" @click="selectMessageId(message.id)">
                             {{message.text}}
                             <span class="message-time">{{message.date}}</span>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Message info</a></li>
-                                <li @click="deleteMessage(message.id)">
+                                <li @click="deleteMessage( message.id)">
                                     <a class="dropdown-item" href="#">
                                         Delete message
                                     </a>
