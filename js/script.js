@@ -256,7 +256,14 @@ const app = createApp({
         },
         // Modifico il formato della data mostrando solo ore e minuti
         formatDate(date) {
-            const newDate = new Date(date);
+            const [day, month, yearTime] = date.split('/');
+            const [year, time] = yearTime.split(' ');
+            const newDate = new Date(`${year}/${month}/${day} ${time}`)
+            console.log('Data parametro: ', date);
+            console.log('Full data: ', newDate);
+            console.log('Ore: ', newDate.getHours());
+            console.log('minuti: ', newDate.getMinutes());
+
             return `${newDate.getHours()}:${newDate.getMinutes().toString().padStart(2, '0')}`
         }
     }
