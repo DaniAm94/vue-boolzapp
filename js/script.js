@@ -193,7 +193,6 @@ const app = createApp({
         selectedContactId: 1,
         newMessageText: '',
         searchUser: '',
-        selectedMessageId: null
     }),
     computed: {
         selectedContact() {
@@ -240,15 +239,30 @@ const app = createApp({
             }, 1000)
         },
         deleteMessage(messageId) {
-            console.log(messageId)
+            //console.log(messageId)
             this.selectedContact.messages = this.selectedContact.messages.filter((message) => message.id !== messageId)
 
         },
-        selectMessageId(messageId) {
-            this.selectedMessageId = messageId;
+        addActiveClass(event) {
+            event.target.classList.add('active');
         }
     }
 });
 
 app.mount('#root');
 
+
+// Hide Dropdown menu whenever i click on a random location of the window
+window.onclick = function (event) {
+    console.log('ciao');
+    if (!event.target.matches('.message-item')) {
+        let dropdowns = document.getElementsByClassName("message-item");
+
+        for (let i = 0; i < dropdowns.length; i++) {
+            let openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('active')) {
+                openDropdown.classList.remove('active');
+            }
+        }
+    }
+}

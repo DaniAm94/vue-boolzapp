@@ -118,10 +118,6 @@ footer {
     cursor: pointer;
 }
 
-.message-item.dropdown-toggle {
-    white-space: initial;
-}
-
 .message-item.sent {
     align-self: flex-end;
     background-color: #ddf7bd;
@@ -155,6 +151,29 @@ footer {
     bottom: 0;
 }
 
+.drop-down-menu {
+    background-color: rgb(231, 231, 231);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    display: none;
+}
+
+.message-item.active>.drop-down-menu {
+    display: block;
+}
+
+.drop-down-menu>* {
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.drop-down-menu>*:hover {
+    background-color: blue;
+    color: white;
+}
+
 .message-time {
     font-size: 0.7rem;
     align-self: flex-end;
@@ -166,10 +185,4 @@ footer i {
 
 #new-message {
     padding: 10px;
-}
-
-#display-messages .dropdown-menu {
-    position: absolute;
-    top: 50%;
-    left: 50%;
 }
