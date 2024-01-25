@@ -240,7 +240,11 @@ const app = createApp({
         },
         deleteMessage(messageId) {
             console.log(messageId)
-            this.selectedContact.messages = this.selectedContact.messages.filter((message) => message.id !== messageId)
+            //this.selectedContact.messages = this.selectedContact.messages.filter((message) => message.id !== messageId)
+            const messageIndex = this.selectedContact.messages.findIndex((message) => message.id === messageId);
+            if (messageIndex !== -1) {
+                this.selectedContact.messages.splice(messageIndex, 1);
+            }
         }
     }
 });
