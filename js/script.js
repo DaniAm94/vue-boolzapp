@@ -190,14 +190,21 @@ const app = createApp({
                 ],
             }
         ],
+        // Id del contatto selezionato (1 di default)
         selectedContactId: 1,
+        // Testo del nuovo messaggio
         newMessageText: '',
+        // Barra di ricerca utenti
         searchUser: '',
+        // Status del contatto selezionato
+        selectedContactStatus: 'Ultimo accesso oggi alle 12:00'
     }),
     computed: {
+        // Il contatto selezionato
         selectedContact() {
             return this.contacts.find((contact) => this.selectedContactId === contact.id)
         },
+        // Lista contatti filtrata a seconda del contenuto della barra di ricerca
         filteredContacts() {
             const searchUserToLowerCase = this.searchUser.toLowerCase();
             return this.contacts.filter(contact => contact.name.toLowerCase().includes(searchUserToLowerCase));
@@ -209,42 +216,48 @@ const app = createApp({
             this.selectedContactId = id;
 
         },
-        logNewList() {
-            console.log(this.newContactsList);
-        },
-        fomatDate(date) {
-            const newDate = new Date(date);
-            return newDate.toISODate();
-        },
         getNewMessage() {
+            // Se il testo del nuovo messaggio è vuoto non fare nulla
+            if (!this.newMessageText) return;
+            // Aggiorna lo status
+            this.selectedContactStatus = 'Sta scrivendo'
+            // Costruisco il nuovo messaggio da inviare
             const newMessage = {
                 id: new Date().toISOString(),
-                date: `${new Date().getHours().toString().padStart(2, '0')}:${new Date().getMinutes().toString().padStart(2, '0')}`,
+                date: new Date(),
                 text: this.newMessageText,
                 status: 'sent'
             }
-            // Build an answer
+            // Costruisco la risposta
             const answer = {
                 id: new Date().toISOString(),
-                date: `${new Date().getHours().toString().padStart(2, '0')}:${new Date().getMinutes().toString().padStart(2, '0')}`,
+                date: new Date(),
                 text: 'Ok',
                 status: 'received'
             }
+            // Mostro subito il nuovo messaggio
             this.selectedContact.messages.push(newMessage);
+            // Svuoto la input text 
             this.newMessageText = '';
-            // Auto answer after 1 second
+            // Setto un timeout per far comparire la risposta dopo 3 secondi
             setTimeout(() => {
                 this.selectedContact.messages.push(answer);
-
-            }, 1000)
+                this.selectedContactStatus = 'Ultimo accesso oggi alle 12:00'
+            }, 3000)
         },
+        // Ricreo la lista dei messaggi escludendo il messaggio con id passato a parametro
         deleteMessage(messageId) {
-            //console.log(messageId)
             this.selectedContact.messages = this.selectedContact.messages.filter((message) => message.id !== messageId)
 
         },
+        // Aggiungo la classe active alla casella di testo cliccata
         addActiveClass(event) {
             event.target.classList.add('active');
+        },
+        // Modifico il formato della data mostrando solo ore e minuti
+        formatDate(date) {
+            const newDate = new Date(date);
+            return `${newDate.getHours()}:${newDate.getMinutes().toString().padStart(2, '0')}`
         }
     }
 });
@@ -252,9 +265,8 @@ const app = createApp({
 app.mount('#root');
 
 
-// Hide Dropdown menu whenever i click on a random location of the window
+// Nascondo i dropdown menu ogni qualvolta venga cliccato un punto qualsiasi della finestra che non sia un messaggio
 window.onclick = function (event) {
-    console.log('ciao');
     if (!event.target.matches('.message-item')) {
         let dropdowns = document.getElementsByClassName("message-item");
 

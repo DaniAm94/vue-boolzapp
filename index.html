@@ -65,10 +65,12 @@
                                 <img :src="`img/avatar${contact.avatar}.jpg`" class="avatar" :alt="contact.avatar">
                                 <div>
                                     <div class="contact-name">{{contact.name}}</div>
-                                    <span class="last-message">{{}}</span>
+                                    <span
+                                        class="last-message">{{contact.messages[contact.messages.length-1].text}}</span>
                                 </div>
                             </div>
-                            <span class="last-message-time">12:00</span>
+                            <span
+                                class="last-message-time">{{formatDate(contact.messages[contact.messages.length-1].date)}}</span>
                         </li>
                     </ul>
                 </div>
@@ -80,7 +82,7 @@
                             <img class="avatar" :src="`img/avatar${selectedContact.avatar}.jpg`" alt="avatar 2">
                             <div>
                                 <div id="selected-contact-name">{{selectedContact.name}}</div>
-                                <span id="last-access"> Ultimo accesso oggi alle 12:00</span>
+                                <span id="last-access">{{selectedContactStatus}}</span>
                             </div>
                         </div>
                         <div class="buttons d-flex align-items-center column-gap-3">
@@ -95,7 +97,7 @@
                             class="message-item" :class="message.status=== 'sent'? 'sent': 'received'"
                             :key="`${selectedContact.id} ${message.id}`">
                             {{message.text}}
-                            <span class="message-time">{{message.date}}</span>
+                            <span class="message-time">{{formatDate(message.date)}}</span>
                             <div class="drop-down-menu">
                                 <div>Message info</div>
                                 <div @click="deleteMessage(message.id)">Delete message</div>
@@ -104,12 +106,12 @@
                     </div>
                     <!-- Footer -->
                     <footer class="d-flex px-5 flex-shrink-0">
-                        <button @click="logNewList" class="btn" type="button" id="emoji">
+                        <button class="btn" type="button" id="emoji">
                             <i class="fa-regular fa-face-smile"></i>
                         </button>
                         <input @keyup.enter="getNewMessage" id="new-message" type="text"
                             class="flex-grow-1 border-0 rounded " placeholder="Scrivi un messaggio"
-                            v-model="newMessageText">
+                            v-model.trim="newMessageText">
                         <button class="btn" type="button" id="emoji">
                             <i class="fa-solid fa-microphone"></i>
                         </button>
