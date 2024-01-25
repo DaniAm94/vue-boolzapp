@@ -207,7 +207,7 @@ const app = createApp({
     methods: {
         selectContactId(id) {
             this.selectedContactId = id;
-            console.log(this.selectedContactId);
+
         },
         logNewList() {
             console.log(this.newContactsList);
@@ -237,10 +237,13 @@ const app = createApp({
                 this.selectedContact.messages.push(answer);
 
             }, 1000)
+        },
+        deleteMessage(id) {
+            console.log(id)
+            //this.selectedContact.messages = this.selectedContact.messages.filter((message) => message.id === selectedMessage.id)
         }
     }
 });
 
 app.mount('#root');
-
 

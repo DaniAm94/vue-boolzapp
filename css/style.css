@@ -109,11 +109,17 @@ footer {
 .message-item {
     position: relative;
     border-radius: 10px;
-    min-height: 20px;
     width: calc(100% / 12 * 5);
     padding: 10px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    row-gap: 5px;
+    overflow-wrap: break-word;
+    cursor: pointer;
+}
+
+.message-item.dropdown-toggle {
+    white-space: initial;
 }
 
 .message-item.sent {
@@ -127,7 +133,7 @@ footer {
     border-top: 20px solid transparent;
     border-left: 0;
     border-right: 20px solid transparent;
-    border-bottom: 20px solid #ddf7bd;
+    border-bottom: 15px solid #ddf7bd;
     position: absolute;
     right: -10px;
     bottom: 0;
@@ -143,14 +149,14 @@ footer {
     border-top: 20px solid transparent;
     border-left: 20px solid transparent;
     border-right: 0;
-    border-bottom: 20px solid white;
+    border-bottom: 15px solid white;
     position: absolute;
     left: -10px;
     bottom: 0;
 }
 
 .message-time {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     align-self: flex-end;
 }
 
@@ -160,4 +166,10 @@ footer i {
 
 #new-message {
     padding: 10px;
+}
+
+#display-messages .dropdown-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
