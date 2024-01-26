@@ -1,5 +1,8 @@
-console.log(Vue);
 const { createApp } = Vue;
+
+
+var dt = luxon.DateTime;
+
 const app = createApp({
     data: () => ({
         user: {
@@ -191,7 +194,7 @@ const app = createApp({
             }
         ],
         // Id del contatto selezionato (1 di default)
-        selectedContactId: 1,
+        selectedContactId: null,
         // Testo del nuovo messaggio
         newMessageText: '',
         // Barra di ricerca utenti
@@ -216,39 +219,35 @@ const app = createApp({
             this.selectedContactId = id;
 
         },
+        createMessage(text, status) {
+            return {
+                id: new Date().toISOString(),
+                date: dt.now().setLocale('it').toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS),
+                text,
+                status
+            }
+        },
         getNewMessage() {
             // Se il testo del nuovo messaggio è vuoto non fare nulla
             if (!this.newMessageText) return;
             // Aggiorna lo status
             this.selectedContactStatus = 'Sta scrivendo'
             // Costruisco il nuovo messaggio da inviare
-            const newMessage = {
-                id: new Date().toISOString(),
-                date: new Date(),
-                text: this.newMessageText,
-                status: 'sent'
-            }
-            // Costruisco la risposta
-            const answer = {
-                id: new Date().toISOString(),
-                date: new Date(),
-                text: 'Ok',
-                status: 'received'
-            }
+            const newMessage = this.createMessage(this.newMessageText, 'sent');
             // Mostro subito il nuovo messaggio
             this.selectedContact.messages.push(newMessage);
             // Svuoto la input text 
             this.newMessageText = '';
             // Setto un timeout per far comparire la risposta dopo 3 secondi
             setTimeout(() => {
+                // Costruisco la risposta
+                const answer = this.createMessage('Ok!', 'received');
                 this.selectedContact.messages.push(answer);
                 this.selectedContactStatus = 'Ultimo accesso oggi alle 12:00'
             }, 3000)
         },
         // Ricreo la lista dei messaggi escludendo il messaggio con id passato a parametro
         deleteMessage(messageId) {
-            const messageToDelete = this.selectedContact.messages.find((message) => message.id === messageId);
-            console.log('Messaggio da eliminare: ', messageToDelete);
             this.selectedContact.messages = this.selectedContact.messages.filter((message) => message.id !== messageId)
 
         },
@@ -260,7 +259,6 @@ const app = createApp({
         formatDate(date) {
             if (!date) return ''
             else {
-
                 const [day, month, yearTime] = date.split('/');
                 const [year, time] = yearTime.split(' ');
                 const newDate = new Date(`${year}/${month}/${day} ${time}`)
@@ -268,7 +266,6 @@ const app = createApp({
                 //console.log('Full data: ', newDate);
                 //console.log('Ore: ', newDate.getHours());
                 //console.log('minuti: ', newDate.getMinutes());
-
                 return `${newDate.getHours()}:${newDate.getMinutes().toString().padStart(2, '0')}`
             }
         },
@@ -280,6 +277,9 @@ const app = createApp({
             if (!messages.length) return ''
             else return messages[messages.length - 1].date;
         }
+    },
+    created() {
+        this.selectedContactId = this.contacts[0].id;
     }
 });
 

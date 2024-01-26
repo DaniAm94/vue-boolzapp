@@ -174,11 +174,11 @@ footer {
 
 .drop-down-menu>* {
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 10px 15px;
 }
 
 .drop-down-menu>*:hover {
-    background-color: blue;
+    background-color: darkgrey;
     color: white;
 }
 

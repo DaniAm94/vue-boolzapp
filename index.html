@@ -94,7 +94,7 @@
                         <div @click="(event)=> addActiveClass(event)" v-for="message in selectedContact.messages"
                             class="message-item" :class="message.status" :key="`${selectedContact.id} ${message.id}`">
                             {{message.text}}
-                            <span class="message-time">{{formatDate(message.date)}}</span>
+                            <span class="message-time">{{message.date}}</span>
                             <div class="drop-down-menu">
                                 <div>Message info</div>
                                 <div @click="deleteMessage(message.id)">Delete message</div>
