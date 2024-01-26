@@ -159,6 +159,7 @@ footer {
 .drop-down-menu {
     background-color: white;
     position: absolute;
+    z-index: 1;
     top: 50%;
     left: 50%;
     transform: translate(-50%);

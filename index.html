@@ -65,12 +65,10 @@
                                 <img :src="`img/avatar${contact.avatar}.jpg`" class="avatar" :alt="contact.avatar">
                                 <div>
                                     <div class="contact-name">{{contact.name}}</div>
-                                    <span
-                                        class="last-message">{{contact.messages[contact.messages.length-1].text}}</span>
+                                    <span class="last-message">{{getLastMessageText(contact)}}</span>
                                 </div>
                             </div>
-                            <span
-                                class="last-message-time">{{formatDate(contact.messages[contact.messages.length-1].date)}}</span>
+                            <span class="last-message-time">{{formatDate(getLastMessageDate(contact))}}</span>
                         </li>
                     </ul>
                 </div>
@@ -94,8 +92,7 @@
                     <!-- Display messaggi -->
                     <div id="display-messages" class="flex-grow-1 overflow-y-scroll">
                         <div @click="(event)=> addActiveClass(event)" v-for="message in selectedContact.messages"
-                            class="message-item" :class="message.status=== 'sent'? 'sent': 'received'"
-                            :key="`${selectedContact.id} ${message.id}`">
+                            class="message-item" :class="message.status" :key="`${selectedContact.id} ${message.id}`">
                             {{message.text}}
                             <span class="message-time">{{formatDate(message.date)}}</span>
                             <div class="drop-down-menu">

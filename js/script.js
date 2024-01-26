@@ -247,6 +247,8 @@ const app = createApp({
         },
         // Ricreo la lista dei messaggi escludendo il messaggio con id passato a parametro
         deleteMessage(messageId) {
+            const messageToDelete = this.selectedContact.messages.find((message) => message.id === messageId);
+            console.log('Messaggio da eliminare: ', messageToDelete);
             this.selectedContact.messages = this.selectedContact.messages.filter((message) => message.id !== messageId)
 
         },
@@ -256,15 +258,27 @@ const app = createApp({
         },
         // Modifico il formato della data mostrando solo ore e minuti
         formatDate(date) {
-            const [day, month, yearTime] = date.split('/');
-            const [year, time] = yearTime.split(' ');
-            const newDate = new Date(`${year}/${month}/${day} ${time}`)
-            console.log('Data parametro: ', date);
-            console.log('Full data: ', newDate);
-            console.log('Ore: ', newDate.getHours());
-            console.log('minuti: ', newDate.getMinutes());
+            if (!date) return ''
+            else {
 
-            return `${newDate.getHours()}:${newDate.getMinutes().toString().padStart(2, '0')}`
+                const [day, month, yearTime] = date.split('/');
+                const [year, time] = yearTime.split(' ');
+                const newDate = new Date(`${year}/${month}/${day} ${time}`)
+                //console.log('Data parametro: ', date);
+                //console.log('Full data: ', newDate);
+                //console.log('Ore: ', newDate.getHours());
+                //console.log('minuti: ', newDate.getMinutes());
+
+                return `${newDate.getHours()}:${newDate.getMinutes().toString().padStart(2, '0')}`
+            }
+        },
+        getLastMessageText({ messages }) {
+            if (!messages.length) return 'Nessun messaggio'
+            else return messages[messages.length - 1].text;
+        },
+        getLastMessageDate({ messages }) {
+            if (!messages.length) return ''
+            else return messages[messages.length - 1].date;
         }
     }
 });
